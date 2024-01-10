@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tic-Tac-Toe</title>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <p>Current player: {{ current_player }}</p>
+    <table>
+        <tr>
+            <td>
+                <form method="POST" action="/move/0">
+                    <button type="submit" {% if board[0] != ' ' %}disabled{% endif %}>{{ board[0] }}</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="/move/1">
+                    <button type="submit" {% if board[1] != ' ' %}disabled{% endif %}>{{ board[1] }}</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="/move/2">
+                    <button type="submit" {% if board[2] != ' ' %}disabled{% endif %}>{{ board[2] }}</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form method="POST" action="/move/3">
+                    <button type="submit" {% if board[3] != ' ' %}disabled{% endif %}>{{ board[3] }}</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="/move/4">
+                    <button type="submit" {% if board[4] != ' ' %}disabled{% endif %}>{{ board[4] }}</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="/move/5">
+                    <button type="submit" {% if board[5] != ' ' %}disabled{% endif %}>{{ board[5] }}</button>
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form method="POST" action="/move/6">
+                    <button type="submit" {% if board[6] != ' ' %}disabled{% endif %}>{{ board[6] }}</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="/move/7">
+                    <button type="submit" {% if board[7] != ' ' %}disabled{% endif %}>{{ board[7] }}</button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="/move/8">
+                    <button type="submit" {% if board[8] != ' ' %}disabled{% endif %}>{{ board[8] }}</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
