@@ -1,0 +1,296 @@
+/* Reset some default browser styles */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+nav h1 {
+    font-size: 24px;
+    font-family: 'Arial Black', sans-serif; /* Use a bolder font */
+    letter-spacing: 2px; /* Add letter spacing */
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+}
+
+.menu li {
+    margin-right: 20px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s;
+    position: relative; /* Add relative positioning for menu item */
+}
+
+.menu a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff9900; /* Add an underline */
+    transform: scaleX(0); /* Initially set the underline to 0 width */
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.menu a:hover {
+    color: #ff9900;
+}
+
+.menu a:hover:before {
+    transform: scaleX(1); /* Expand the underline on hover */
+    transform-origin: bottom left;
+}
+
+/* Main Content Styles */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 50px;
+    margin: -10px; /* Add negative margin to counteract the padding */
+}
+
+/* Styles for individual products */
+.product {
+    width: calc(30% - 20px); /* Adjust the width to make them smaller and provide some spacing */
+    margin: 10px; /* Add margin to create spacing between items */
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    border-radius: 20px; /* Add border radius to make them rounded */
+    overflow: hidden; /* Clip the corners for rounded effect */
+    text-align: center;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px; /* Add border radius to make them rounded */
+}
+
+.product h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.product p.product-description {
+    font-size: 14px;
+}
+
+.product strong {
+    color: #ff9900;
+}
+
+.product-button {
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px; /* Add rounded corners */
+    transition: background-color 0.3s;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline-block to fit the button size */
+}
+
+.product-button:hover {
+    background-color: #e68500;
+}
+
+/* Styles for the "About Me" section */
+.about {
+    background-color: #7f7f7f; /* Light grey background color */
+    padding: 80px 0;
+    text-align: center;
+    color: #333; /* Dark text color */
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.explore-button {
+    background-color: #ff9900; /* Orange button background color */
+    color: #fff; /* White button text color */
+    border: none;
+    padding: 12px 24px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.explore-button:hover {
+    background-color: #e68500; /* Hover color change */
+}
+
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #333;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* Additional Styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .product {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .product {
+        width: 100%;
+    }
+}
+
+/* Fancy Button Styles */
+.fancy-button-section {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 50px;
+}
+
+.fancy-button {
+    background-color: #ff9900;
+    color: #fff;
+    border: none;
+    padding: 20px 40px;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 10px; /* Add rounded corners */
+    transition: background-color 0.3s;
+    text-decoration: none; /* Remove underline from the anchor inside the button */
+    display: inline-block; /* Display as inline-block to fit the button size */
+}
+
+.fancy-button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.fancy-button:hover {
+    background-color: #e68500;
+}
+
+/* Styles for the static divider */
+.divider {
+    height: 4px; /* Increase the height for a larger divider */
+    background-color: #ccc; /* Grey color */
+    margin: 50px auto; /* Adjust margin to control the space above and below the divider */
+    width: 100%; /* Set the initial width to 100% */
+    max-width: 400px; /* Adjust the maximum width as needed */
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    z-index: 9999;
+    text-align: center;
+    overflow: auto; /* Enable scrolling if the image is too large */
+}
+
+.modal img {
+    margin: auto;
+    display: block;
+    max-width: 80%; /* Limit the maximum width of the image */
+    max-height: 80vh; /* Limit the maximum height of the image */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+/* Close button */
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}

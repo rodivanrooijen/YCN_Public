@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>klant FrontEnd</title>
+    <script>
+        // -------------------------------------------------
+        // READ
+        async function alleklanten() {
+            // roep het endpoint aan 
+            await fetch("http://localhost:8082/alleklanten")
+                .then((response) => response.json()) // converteer de server-response naar JSON
+                .then((data) => { // data = de geconverteerde JSON...
+                    console.log("ALLE klantEN", data);
+                    // verwijder eventuele vorige output...
+                    document.getElementById("alleklantenoutput").innerHTML = "";
+                    // ... en tabelleer de data van alle klanten
+                    let HTMLTabel = maakTabel(data);
+                    document.getElementById("alleklantenoutput").append(HTMLTabel);
+                });
+        }
+        // -------------------------------------------------
+        // CREATE
+        async function createklant() {
+            // lees de data uit de "boxes" op de webpagina en ken de waardes toe aan een "data"-object
+            let data = {
+                voornaam: document.getElementById("box_voornaam").value,
+                achternaam: document.getElementById("box_achternaam").value
+            }
+
+            // als een van de "boxes" leeg is, then it's a NO GO en return
+            if (data.voornaam.trim().length == 0 || data.achternaam.trim().length == 0) {
+                alert("Please Fill Both Fields...");
+                return;
+            }
+
+            // maak het data-object tot JSON zodat het verzonden kan worden
+            let data_json = JSON.stringify(data);
+
+            // stel deze "thepost" samen zodat de data_json naar
+            // de backend gestuurd kan worden met wat benodigde HTTP zaken
+            let thepost = {
+                method: "POST",
+                headers: {
+                    Accept: "application/json;charset=utf-8",
+                    "Content-Type": "application/json",
+                    //"Cache-Control": "no-cache",
+                },
+                body: data_json,
+            };
+
+            // roep het endpoint aan geparameteriseerd met "thepost"
+            await fetch("http://localhost:8082/postklant", thepost)
+                .then((response) => response.json()) // converteer de server-response naar JSON
+                .then((data) => { // data = de geconverteerde JSON...
+                    // meld aan de user wat er zojuist server-side gecreeerd is
+                    console.log("RECORD CREATED", data);
+
+                    // nu heb je de data client-side en kun je er client-side mee aan de gang
+                    // ...
+                    // ...
+
+                    // maak bijvoorbeeld de "boxes" leeg zodat niet steeds hetzelfde gepost kan worden
+                    document.getElementById("box_voornaam").value = "";
+                    document.getElementById("box_achternaam").value = "";
+
+                    // vraag eventueel meteen "/alleklanten" opnieuw op aangezien er net een nieuwe bijgekomen is
+                    alleklanten();
+                });
+        }
+        // -------------------------------------------------
+        function maakTabel(data) {
+            let table = document.createElement("TABLE");
+            table.setAttribute("cellspacing", 0); // geen ruimte tussen de cellen! (dit is een archaïsche table-property...)
+            data?.forEach(record => {
+                table.append(makeRow(record));
+            });
+            return table;
+        }
+        // -------------------------------------------------
+        function makeRow(record) {
+            console.log("TR", record)
+            let tr = document.createElement("TR");
+            let td = document.createElement("TD");
+            // voeg eventueel een mespuntje CSS toe:
+            td.style = "padding:6px;border-bottom:1px solid silver;border-radius:4px 4px 0 0;background-color:#FFF8;"
+
+            for (let key in record) {
+                console.log("TD", key, record[key])
+                let td_clone = td.cloneNode(true);
+                let element = document.createTextNode(record[key]);
+                td_clone.setAttribute("title", key);
+                td_clone.append(element);
+                tr.append(td_clone);
+            }
+            
+            // -------------------------------------------------
+            // DELETE
+            // een beginnetje van de delete functionaliteit
+            td.style.color = "blue";
+            td.style.cursor = "pointer";
+
+            let cell1 = td.cloneNode(true);
+            cell1.style.color = "maroon";
+            cell1.append("X");
+            cell1.onclick = (event)=>{
+                verwijderRecord(record.id); // to do: roep eindpunt aan dat het record met id=record.id verwijdert...
+            }
+            tr.append(cell1);
+
+            // -------------------------------------------------
+            // UPDATE
+            // een beginnetje om een record the editen en op te slaan
+            let cell2 = td.cloneNode(true);
+            cell2.append("Edit");
+            cell2.onclick = (event)=>{
+                updateRecord(record.id); // to do: roep eindpunt aan dat het record met id=record.id bewerkt...
+            }
+            tr.append(cell2);
+            
+            return tr;
+        }
+        // -------------------------------------------------
+        function verwijderRecord(id){
+            //alert("TO DO: roep een endpoint aan geparameteriseerd met de ID = " + id);
+            fetch("http://localhost:8082/deleteklant/" + id);
+
+            // herlaad de nog bestaande records
+            alleklanten();
+        }
+        // -------------------------------------------------
+        function updateRecord(id){
+            alert("TO DO: bewerk record met ID = " + id);
+        }
+        // -------------------------------------------------
+        function loonatics() {
+            const looneyTunesPersonages = [
+                { voornaam: 'Bugs', achternaam: 'Bunny' },
+                { voornaam: 'Daffy', achternaam: 'Duck' },
+                { voornaam: 'Porky', achternaam: 'Pig' },
+                { voornaam: 'Elmer', achternaam: 'Fudd' },
+                { voornaam: 'Tweety', achternaam: 'Bird' },
+                { voornaam: 'Sylvester', achternaam: 'the Cat' },
+                { voornaam: 'Yosemite', achternaam: 'Sam' },
+                { voornaam: 'Foghorn', achternaam: 'Leghorn' },
+                { voornaam: 'Speedy', achternaam: 'Gonzales' },
+                { voornaam: 'Wile E.', achternaam: 'Coyote' },
+                { voornaam: 'Road', achternaam: 'Runner' },
+            ];
+            looneyTunesPersonages.forEach(personage => {
+                let data = {
+                    voornaam: personage.voornaam,
+                    achternaam: personage.achternaam
+                }
+                let data_json = JSON.stringify(data);
+                let thepost = {
+                    method: "POST",
+                    headers: {
+                        Accept: "application/json;charset=utf-8",
+                        "Content-Type": "application/json",
+                        //"Cache-Control": "no-cache",
+                    },
+                    body: data_json,
+                };
+                fetch("http://localhost:8082/postklant", thepost)
+                    .then((response) => response.json())
+                    .then((data) => {
+                        alleklanten();
+                    });
+            })
+        }
+    </script>
+</head>
+
+<body>
+    <input type="text" id="box_voornaam" placeholder="voornaam">
+    <input type="text" id="box_achternaam" placeholder="achternaam">
+    <button onclick="createklant()">Create klant (POST)</button>
+    <hr />
+    <button onclick="alleklanten()">Read Alle klanten (console!)</button>
+    <div id="alleklantenoutput"></div>
+
+
+    <button onclick="loonatics()" style="position:absolute;right:10px;bottom:10px;">Looney Tunes Characters</button>
+</body>
+
+</html>

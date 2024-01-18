@@ -1,0 +1,10 @@
+--Maandag--
+UML
+
+--Dinsdag--
+Fullstack
+Low-code
+
+
+--Vrijdag--
+Fullstack

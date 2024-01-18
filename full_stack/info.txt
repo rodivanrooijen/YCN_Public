@@ -1,0 +1,20 @@
+CRUD (CREATE READ UPDATE DELETE)
+            SQL         HTTP        REPOSITORY/SERVICE
+CREATE      INSERT      POST        SAVE
+READ        SELECT      GET         FIND        
+UPDATE      UPDATE      PATCH       SAVE
+DELETE      DELETE      DELETE      REMOVE
+
+-----------------------------------------------------------------------------
+
+MVC MODEL           VIEW            CONTROLLER
+    ENTITEITEN      ENDPOINT        SERVICE & REPOSITORY
+
+Alle endpoints zijn samen een API
+
+JSON:
+{
+    key: value,
+    key2: value2,
+    naam: "Rodi
+}
