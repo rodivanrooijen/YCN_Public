@@ -21,7 +21,7 @@ import folium
 import webbrowser
 
 # Replace 'YOUR_API_KEY' with your actual API key
-api_key = 'AIzaSyC5d-1frGUDMPZIV16_VrNn2jGVujQEqgQ'
+api_key = 'x'
 
 # Create a client instance
 client = googlemaps.Client(api_key)
